@@ -15,12 +15,9 @@ jobs:
       contents: write
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-      
-#uses: actions/checkout@v3 #v3 to ensure that everything is run on node16
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
 
     - name: Set up Python
       uses: actions/setup-python@v3 #v3, node12 will be deprecated soon
