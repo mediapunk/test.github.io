@@ -1,5 +1,8 @@
 name: Build MPNK Website
 
+# modeled after:
+# https://github.com/actions/starter-workflows/blob/main/pages/jekyll-gh-pages.yml
+
 on:
   push:
     branches:
@@ -40,6 +43,7 @@ jobs:
       url: ${{steps.deployment.outputs.page_url}}
       
     permissions:
+      contents: read
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
 
@@ -47,12 +51,9 @@ jobs:
     - uses: actions/download-artifact@master
       with:
         name: site-package
-        path: .
-    - uses: actions/configure-pages@v1
-    - uses: actions/upload-pages-artifact@v1
-      with:
-        path: .
-    - id: deployment
-      uses: actions/deploy-pages@main
-      with:
-        artifact_name: site-package
+        path: ./_site
+    - uses: actions/configure-pages@v5
+    - uses: actions/upload-pages-artifact@v3
+    - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
