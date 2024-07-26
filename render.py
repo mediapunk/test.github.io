@@ -57,7 +57,7 @@ tfile = "index.html"
 template = jinja_env.get_template(tfile)
 
 # Render template and output it to index.html, the default page to show
-output_path = Path('output')  #change path as needed
+output_path = Path('_site')  #change path as needed
 output_path.mkdir(exist_ok=True)
 
 output_file_path = output_path.joinpath(tfile)
