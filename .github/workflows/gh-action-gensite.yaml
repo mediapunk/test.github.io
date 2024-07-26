@@ -52,8 +52,11 @@ jobs:
       with:
         name: site-package
         path: ./_site
+    
     - uses: actions/configure-pages@v5
+    
     - uses: actions/upload-pages-artifact@v3
+
     - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      id:   deployment
+      uses: actions/deploy-pages@v4
