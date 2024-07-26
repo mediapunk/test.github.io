@@ -9,9 +9,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest  # use the latest version of ubuntu
 
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3 #v3 to ensure that everything is run on node16
+      uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      
+#uses: actions/checkout@v3 #v3 to ensure that everything is run on node16
 
     - name: Set up Python
       uses: actions/setup-python@v3 #v3, node12 will be deprecated soon
