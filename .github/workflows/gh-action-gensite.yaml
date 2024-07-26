@@ -40,7 +40,8 @@ jobs:
       url: ${{steps.deployment.outputs.page_url}}
       
     permissions:
-      id-token: write
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
 
     steps:
     - uses: actions/download-artifact@master
@@ -53,3 +54,5 @@ jobs:
         path: .
     - id: deployment
       uses: actions/deploy-pages@main
+      with:
+        artifact_name: site-package
